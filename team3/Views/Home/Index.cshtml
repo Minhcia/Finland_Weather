@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var tem = ViewData["Temperature"];
+    var wind = ViewData["WindSpeed"];
+    var date = ViewData["DateNow"];
+    var feel = Convert.ToDecimal(ViewData["FeelLike"]);
+    var location = ViewData["Location"];
+    var er = ViewData["Error"];
+}
+
+
+<div class="desktop">
+    <div class="div">
+        <div style="width: 100%; display: flex; flex-direction: row">
+            <p style="color: red">@er</p>
+            @*<p style="margin-left: 20px"> Time: <b>@date</b> </p>*@
+        </div>
+        <div class="overlap">
+            <div class="dropdown-full">
+                <input id="location" class="form-control" placeholder="Search for location" />
+            </div>
+            <div class="overlap-group">
+                <button id="result" onclick="myFunction()">GET FORECAST</button>
+            </div>
+        </div>
+        <div class="overlap-2">
+            <img class="img" src="~/css/thermometer.png" />
+            <div class="temperature">
+                <div class="text-wrapper-2" id="temper">@tem</div>
+                <div class="text-wrapper-3">Temperature<br />(℃)</div>
+            </div>
+        </div>
+        <div class="overlap-group-2">
+            <img class="img" src="~/css/speed.png" />
+            <div class="wind-speed">
+                <div class="text-wrapper-2" id="wind">@wind</div>
+                <div class="text-wrapper-3">Wind Speed<br />(m/s)</div>
+            </div>
+        </div>
+        <div class="overlap-3">
+            <img class="img" src="~/css/temperature.png" />
+            <div class="feels-like">
+                <div class="text-wrapper-2" id="feel">@Math.Round(feel,2)</div>
+                <div class="text-wrapper-3">Feels like<br />(℃)</div>
+            </div>
+        </div>
+        <div class="text-wrapper-4">Weather Today! </div>
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        window.location.href = "/Home/Index?location=" + $("#location").val()
+    }
+</script>
+
